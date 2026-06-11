@@ -15,6 +15,7 @@ class AdminUserSeeder extends Seeder
                 'password' => '@dmin123',
                 'role' => User::ROLE_ADMIN,
                 'score' => 0,
+                'payment_status' => 'verified',
             ]
         );
     }
