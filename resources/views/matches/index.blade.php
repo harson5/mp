@@ -9,6 +9,17 @@
 @section('content')
 <div class="container mt-4 mb-4">
     <div class="row">
+        <div class="col-12 mb-3">
+           <div class="alert alert-warning" role="alert" style="border-radius:0.5rem; background-color: #fcf3d6; border-left: 6px solid #ffc107; color: #856404;">
+  <ul style="margin-bottom: 0; padding-left: 1.2rem;">
+    <strong>Note:</strong>
+    <li class="text-danger"> This is not a betting website. The game is only for entertainment purposes and fun competition inside .</li>
+    <li>The collected money will be divided into prizes for the top 3 users at the end of the tournament.</li>
+    <li>The scoring system is designed to reward accurate predictions, with points awarded based on how closely your prediction matches the actual match results.</li>
+    <li>Please refer to the scoring rules on the right for more details.</li>
+  </ul>
+</div>
+        </div>
         <div class="col-md-6">
             <div class="card shadow h-100">
                 <div class="">

@@ -11,8 +11,15 @@ class AllUsersResultController extends Controller
     public function index(Request $request): View
     {
         $users = User::query()
-            ->with(['predictions' => fn ($query) => $query->with('matchGame')])
+                ->with([
+        'predictions' => function ($query) {
+            $query->whereHas('matchGame', function ($q) {
+                $q->where('match_datetime', '<', now()); // only past matches
+            })->with('matchGame');
+        }
+    ])
             ->whereNot('role',100)
+            ->where('payment_status','verified')
             ->orderByDesc('score')
             ->orderBy('name')
             ->get()

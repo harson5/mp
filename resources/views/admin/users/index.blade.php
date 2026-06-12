@@ -15,6 +15,7 @@
         </div>
         <div>
             <a href="{{ route('admin.users.index') }}" class="btn" style="text-decoration:none;">All</a>
+            <a href="{{ route('admin.users.index', ['payment_status' => 'unpaid']) }}" class="btn" style="text-decoration:none;">Unpaid Users</a>
             <a href="{{ route('admin.users.index', ['payment_status' => 'paid']) }}" class="btn" style="text-decoration:none;">Paid Users</a>
             <a href="{{ route('admin.users.index', ['payment_status' => 'verified']) }}" class="btn" style="text-decoration:none;">Verified</a>
             <!-- <a href="{{ route('admin.matches.create') }}" class="btn" style="display:inline-block;text-decoration:none;">+ Add match</a> -->
