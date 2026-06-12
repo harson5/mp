@@ -13,10 +13,12 @@
            <div class="alert alert-warning" role="alert" style="border-radius:0.5rem; background-color: #fcf3d6; border-left: 6px solid #ffc107; color: #856404;">
   <ul style="margin-bottom: 0; padding-left: 1.2rem;">
     <strong>Note:</strong>
-    <li class="text-danger"> This is not a betting website. The game is only for entertainment purposes and fun competition inside .</li>
+    <li class="text-danger"> This is not a betting website. The game is only for entertainment purposes and fun competition inside<strong> Miracle Interface</strong> Only.</li>
     <li>The collected money will be divided into prizes for the top 3 users at the end of the tournament.</li>
     <li>The scoring system is designed to reward accurate predictions, with points awarded based on how closely your prediction matches the actual match results.</li>
     <li>Please refer to the scoring rules on the right for more details.</li>
+    <strong>Disclaimers:</strong>
+    <li class="text-danger"><i>This Website does not endorse or promote any form of gambling.</i></li>
   </ul>
 </div>
         </div>

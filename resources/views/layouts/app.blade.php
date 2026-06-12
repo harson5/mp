@@ -107,6 +107,7 @@
         .muted { color: #64748b; font-size: 0.9rem; }
         .tabs {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
             border-bottom: 1px solid #e2e8f0;

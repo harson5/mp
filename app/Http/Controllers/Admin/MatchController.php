@@ -23,7 +23,7 @@ class MatchController extends Controller
             $query->where('results_locked', true);
         }
 
-        $matches = $query->orderBy('id')->get();
+        $matches = $query->orderBy('results_locked')->orderBy('id')->get();
 
         return view('admin.matches.index', [
             'matches' => $matches,

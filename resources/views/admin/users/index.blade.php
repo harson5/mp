@@ -39,9 +39,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($users as $index => $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class="transaction-code">{{ $user->transaction_code ?: '-' }}</td>
@@ -74,11 +74,13 @@
                         <td class="d-flex align-items-center gap-1">
 
                             <a class="btn" href="{{ route('admin.users.edit', $user) }}">Edit</a>
+                            @if ($user->payment_status != 'verified')
                             <form method="POST" action="{{ route('admin.users.destroy', $user) }}" style="display:inline;" onsubmit="return confirm('Delete this user?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-link-danger ms-0">Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

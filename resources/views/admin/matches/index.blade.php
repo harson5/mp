@@ -60,12 +60,10 @@
                             @endif
                         </td>
                         <td>
+                            @if ( !$match->hasResults())
                             <a href="{{ route('admin.matches.edit', $match) }}">Edit</a>
-                            <form method="POST" action="{{ route('admin.matches.destroy', $match) }}" style="display:inline;" onsubmit="return confirm('Delete this match?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-link-danger">Delete</button>
-                            </form>
+                             @endif
+
                         </td>
                     </tr>
                 @endforeach

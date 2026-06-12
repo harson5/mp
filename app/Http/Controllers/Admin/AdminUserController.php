@@ -19,6 +19,7 @@ class AdminUserController extends Controller
             $users->where('payment_status', request('payment_status')); 
         }
         $users = $users
+            ->whereNot('role',100)
             ->orderBy('created_at', 'desc')
             ->get();
 
