@@ -29,10 +29,12 @@ class ScoreCalculator
 
             return 2;
         }
+      
 
-        if (MatchGame::isDrawPrediction($predictedWinner, $predictedO1, $predictedO2)) {
-            return 0;
-        }
+
+        // if (MatchGame::isDrawPrediction($predictedWinner, $predictedO1, $predictedO2)) {
+        //     return $this->calculateNonDrawOutcome($match, $predictedWinner, $o1Correct, $o2Correct);
+        // }
 
         return $this->calculateNonDrawOutcome($match, $predictedWinner, $o1Correct, $o2Correct);
     }
@@ -82,6 +84,24 @@ class ScoreCalculator
                 $prediction->user->increment('score', $newPoints);
                 $prediction->update(['points_earned' => $newPoints]);
             }
+        }
+    }
+
+    public function recalculateForMatchNew($match): void
+    {
+        $predictions = Prediction::with('user')->where('match_game_id', $match->id)->get();
+        foreach ($predictions as $prediction) {
+            $oldPoints = $prediction->points_earned;
+            $newPoints = $this->calculate(
+                $match,
+                $prediction->winner,
+                $prediction->opponent1_score,
+                $prediction->opponent2_score
+            );
+
+            $prediction->user->decrement('score', $oldPoints);
+            $prediction->user->increment('score', $newPoints);
+            $prediction->update(['points_earned' => $newPoints]);
         }
     }
 }

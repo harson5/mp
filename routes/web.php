@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\MatchController as AdminMatchController;
+use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\AllUsersResultController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MatchController;
@@ -35,5 +36,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('matches', AdminMatchController::class)->except(['show']);
         Route::resource('users', AdminUserController::class)->except(['show']);
         Route::put('users/{user}/verify', [AdminUserController::class, 'updateVerify'])->name('users.updateVerify');
+        Route::get('re-calculate-scores', [TestController::class, 'reCalculateScores'])->name('admin.reCalculateScores');
     });
 });
