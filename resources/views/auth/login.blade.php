@@ -21,6 +21,9 @@
         <button type="submit">Log in</button>
     </form>
     <p class="muted" style="margin-top:1rem;">
+        <a href="{{ route('password.request') }}">Forgot password?</a>
+    </p>
+    <p class="muted" style="margin-top:0.5rem;">
         New here? <a href="{{ route('register') }}">Register</a>
     </p>
 </div>

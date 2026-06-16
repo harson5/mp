@@ -10,7 +10,6 @@
 <div class="card">
     <h2 style="margin-top:0;">Leaderboard</h2>
     <p class="muted">All users ranked by total points.</p>
-    {{$selectedUser}}
 
     @if ($users->isEmpty())
         <p class="muted" style="margin-top:1rem;">No users found.</p>

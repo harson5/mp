@@ -22,10 +22,16 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'updateResetPassword'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/change-password', [AuthController::class, 'showChangePassword'])->name('change-password.show');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change-password.update');
     Route::get('/matches', [MatchController::class, 'index'])->name('matches.index');
     Route::get('/my-results', [UserResultController::class, 'index'])->name('user-results.index');
     Route::get('/all-users-results', [AllUsersResultController::class, 'index'])->name('all-users-results.index');
