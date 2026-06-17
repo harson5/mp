@@ -7,274 +7,232 @@
 @endsection
 
 @section('content')
-<div class="card">
-    <h2 style="margin-top:0;">Leaderboard</h2>
-    <p class="muted">All users ranked by total points.</p>
+<div class="card border-0 rounded-4 shadow-sm">
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+        <div>
+            <h4 class="fw-bold mb-1">🏆 Leaderboard</h4>
+            <p class="text-muted small mb-0">All users ranked by total points</p>
+        </div>
+        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
+            <i class="bi bi-people-fill me-1"></i> {{ $users->count() }} Users
+        </span>
+    </div>
 
     @if ($users->isEmpty())
-        <p class="muted" style="margin-top:1rem;">No users found.</p>
+    <div class="text-center py-5">
+        <div class="bg-light rounded-circle d-inline-flex p-4 mb-3">
+            <i class="bi bi-people text-muted" style="font-size: 2.5rem;"></i>
+        </div>
+        <h5 class="text-muted fw-bold">No Users Found</h5>
+        <p class="text-muted small">Users will appear here once they join.</p>
+    </div>
     @else
-    <div class="table-responsive" style="margin-top:1rem;">
-    <table class="table table-striped table-bordered responsive-table">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>User</th>
-                <th>Total points</th>
-                <th>Predictions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $index => $user)
-                <tr class="parent-row">
-                    <td data-label="Rank">{{ $index + 1 }}</td>
-                    <td data-label="User">
-                        <a href="{{ route('all-users-results.index', ['user' => $user->id]) }}" class="user-toggle" data-user-id="{{ $user->id }}" style="text-decoration:none;color:inherit;display:block;">
-                            {{ $user->name }}
-                        </a>
-                        @if ($user->isAdmin())
-                            <span class="admin-badge">Admin</span>
-                        @endif
-                        @if (isset($selectedUser) && $selectedUser->id === $user->id)
-                            <span class="badge bg-secondary">Selected</span>
-                        @endif
-                    </td>
-                    <td data-label="Total points"><strong class="points-positive">{{ $user->score }}</strong></td>
-                    <td data-label="Predictions">{{ $user->predictions->count() }}</td>
+    <div class="table-responsive">
+        <table class="table app-table table-bordered table-striped">
+            <!-- Define column widths -->
+            <colgroup>
+                <col style="width: 80px;"> <!-- Rank -->
+                <col style="width: auto;"> <!-- User - takes remaining space -->
+                <col style="width: 240px;"> <!-- Points -->
+                <col style="width: 240px;"> <!-- Predictions -->
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>User</th>
+                    <th>Points</th>
+                    <th>Predictions</th>
                 </tr>
-                <tr class="nested-row" data-user-id="{{ $user->id }}" @if(isset($selectedUser) && $selectedUser->id === $user->id) style="display:table-row;" @else style="display:none;" @endif>
-                    <td colspan="4" style="padding:0;border-top:none;">
-                        <div class="nested-content">
-                            @if ($user->predictions->isEmpty())
-                                <p class="muted" style="margin:0;">No predictions submitted by this user.</p>
+            </thead>
+            <tbody>
+                @foreach ($users as $index => $user)
+                <tr>
+                    <!-- Rank -->
+                    <td data-label="Rank">
+                        <div class="rank-cell">
+                            @if ($index == 0)
+                            <span class="rank-medal gold">🥇</span>
+                            @elseif ($index == 1)
+                            <span class="rank-medal silver">🥈</span>
+                            @elseif ($index == 2)
+                            <span class="rank-medal bronze">🥉</span>
                             @else
-                                <h3 class="mb-2" style="margin-top:0;">{{ $user->name }}'s Predictions</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered nested-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Match #</th>
-                                                <th>Date</th>
-                                                <th>Match</th>
-                                                <th>Predicted winner</th>
-                                                <th>Predicted score</th>
-                                                <th>Actual result</th>
-                                                <th>Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($user->predictions as $prediction)
-                                                @php $match = $prediction->matchGame; @endphp
-                                                <tr>
-                                                    <td data-label="Match #">{{ $match->match_no }}</td>
-                                                    <td data-label="Date">{{ $match->match_datetime->format('M j, Y H:i') }}</td>
-                                                    <td data-label="Match">{{ $match->opponent1 }} vs {{ $match->opponent2 }}</td>
-                                                    <td data-label="Predicted winner">{{ $prediction->winner }}</td>
-                                                    <td data-label="Predicted score">{{ $prediction->opponent1_score }} – {{ $prediction->opponent2_score }}</td>
-                                                    <td data-label="Actual result">
-                                                        @if ($match->hasResults())
-                                                            {{ $match->resultLabel() }}
-                                                        @else
-                                                            <span class="muted">Pending</span>
-                                                        @endif
-                                                    </td>
-                                                    <td data-label="Points">
-                                                        @if ($match->hasResults())
-                                                            @if ($prediction->points_earned > 0)
-                                                                <strong class="points-positive">+{{ $prediction->points_earned }}</strong>
-                                                            @else
-                                                                <span class="muted">0</span>
-                                                            @endif
-                                                        @else
-                                                            <span class="muted">—</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <span class="rank-number">{{ $index + 1 }}</span>
                             @endif
                         </div>
                     </td>
+
+                    <!-- User -->
+                    <td class="user-td" data-label="User">
+                        <div class="d-flex align-items-center gap-2 user-cell">
+                            <div class="d-flex align-items-center gap-3">
+                                <div>
+                                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                                        <span class="fw-bold text-dark">{{ $user->name }}</span>
+                                        @if ($user->isAdmin())
+                                        <span class="admin-chip">
+                                            <i class="bi bi-shield-check me-1"></i>Admin
+                                        </span>
+                                        @endif
+                                    </div>
+                                    @if(isset($selectedUser) && $selectedUser->id === $user->id)
+                                    <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill mt-1">
+                                        <i class="bi bi-check-circle me-1"></i>Selected
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- View Button -->
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 view-btn"
+                                data-bs-toggle="modal" data-bs-target="#predictionsModal{{ $user->id }}">
+                                <i class="bi bi-eye me-md-1"></i>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+                        </div>
+                    </td>
+
+                    <!-- Points -->
+                    <td data-label="Points">
+                        <span class="points-chip">
+                            {{ $user->score }}
+                        </span>
+                    </td>
+
+                    <!-- Predictions Count -->
+                    <td data-label="Predictions">
+                        <span class="predictions-count">
+                            {{ $user->predictions->count() }}
+                        </span>
+                    </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-<style>
-/* Responsive styles */
-@media (max-width: 768px) {
-    /* Convert main table to block/card layout */
-    .responsive-table,
-    .responsive-table tbody,
-    .responsive-table tr,
-    .responsive-table td,
-    .responsive-table th {
-        display: block;
-    }
-    
-    .responsive-table thead {
-        display: none;
-    }
-    
-    .responsive-table tr {
-        margin-bottom: 1rem;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-    }
-    
-    .responsive-table td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem;
-        border: none;
-        border-bottom: 1px solid #dee2e6;
-        text-align: right;
-    }
-    
-    .responsive-table td:last-child {
-        border-bottom: none;
-    }
-    
-    .responsive-table td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-align: left;
-        margin-right: 1rem;
-        flex: 1;
-    }
-    
-    /* Nested table styles */
-    .nested-content {
-        padding: 1rem;
-        background: #f9fafb;
-        border-top: 1px solid #dee2e6;
-    }
-    
-    .nested-table,
-    .nested-table tbody,
-    .nested-table tr,
-    .nested-table td,
-    .nested-table th {
-        display: block;
-    }
-    
-    .nested-table thead {
-        display: none;
-    }
-    
-    .nested-table tr {
-        margin-bottom: 1rem;
-        border: 1px solid #dee2e6;
-        background: white;
-        border-radius: 4px;
-    }
-    
-    .nested-table td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem;
-        border: none;
-        border-bottom: 1px solid #dee2e6;
-        text-align: right;
-    }
-    
-    .nested-table td:last-child {
-        border-bottom: none;
-    }
-    
-    .nested-table td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-align: left;
-        margin-right: 1rem;
-        flex: 1;
-    }
-    
-    /* Typography adjustments */
-    h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-    }
-    
-    .admin-badge,
-    .badge {
-        display: inline-block;
-        margin-left: 0.5rem;
-        font-size: 0.75rem;
-    }
-}
+    <!-- Prediction Modals -->
+    @foreach ($users as $user)
+    <div class="modal fade" id="predictionsModal{{ $user->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <!-- Modal Header -->
+                <div class="modal-header bg-gradient-primary text-white rounded-top-4 border-0 px-4 py-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="modal-avatar">
+                            {{ strtoupper(substr($user->name, 0, 2)) }}
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold mb-0 text-white">{{ $user->name }}'s <span
+                                    class="fw-normal">Predictions</span></h5>
+                            <div class="d-flex gap-3 mt-1">
+                                <small class="text-white text-opacity-75">
+                                    <i class="bi bi-star-fill me-1"></i>{{ $user->score }} pts
+                                </small>
+                                <small class="text-white text-opacity-75">
+                                    <i class="bi bi-bar-chart-fill me-1"></i>{{ $user->predictions->count() }}
+                                    predictions
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></div>
+                </div>
 
-/* Desktop styles remain the same */
-@media (min-width: 769px) {
-    .nested-content {
-        padding: 1rem;
-        background: #f9fafb;
-        border-top: 1px solid #dee2e6;
-    }
-    
-    .nested-table {
-        margin: 0;
-        width: 100%;
-    }
-}
+                <!-- Modal Body -->
+                <div class="modal-body p-4">
+                    @if ($user->predictions->isEmpty())
+                    <div class="text-center py-5">
+                        <div class="bg-light rounded-circle d-inline-flex p-4 mb-3" style="
+                                    width: 80px;
+                                    height: 80px;
+                                    align-items: center;
+                                ">
+                            <i class="bi bi-inbox text-muted" style="font-size: 2rem;"></i>
+                        </div>
+                        <h6 class="text-muted fw-bold">No Predictions Yet</h6>
+                        <p class="text-muted small">This user hasn't submitted any predictions.</p>
+                    </div>
+                    @else
+                    <div class="table-responsive">
+                        <table class="table modal-table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Match</th>
+                                    <th>Date</th>
+                                    <th>Teams</th>
+                                    <th>Prediction</th>
+                                    <th>Result</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($user->predictions as $prediction)
+                                @php $match = $prediction->matchGame; @endphp
+                                <tr>
+                                    <td data-label="Match">
+                                        <span class="match-badge">#{{ $match->match_no }}</span>
+                                    </td>
+                                    <td data-label="Date">
+                                        <span class="date-text">{{ $match->match_datetime->format('M j, H:i') }}</span>
+                                    </td>
+                                    <td data-label="Teams">
+                                        <div class="teams-container">
+                                            <span class="team-name">{{ $match->opponent1 }}</span>
+                                            <span class="vs-text">vs</span>
+                                            <span class="team-name">{{ $match->opponent2 }}</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Prediction">
+                                        <div class="prediction-container">
+                                            <span class="prediction-winner">{{ $prediction->winner }}</span>
+                                            <span
+                                                class="prediction-score">({{ $prediction->opponent1_score }}–{{ $prediction->opponent2_score }})</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Result">
+                                        @if ($match->hasResults())
+                                        <span class="status-badge status-completed">
+                                            <i class="bi bi-check-circle me-1"></i>{{ $match->resultLabel() }}
+                                        </span>
+                                        @else
+                                        <span class="status-badge status-pending">
+                                            <i class="bi bi-clock me-1"></i>Pending
+                                        </span>
+                                        @endif
+                                    </td>
+                                    <td data-label="Points">
+                                        @if ($match->hasResults())
+                                        @if ($prediction->points_earned > 0)
+                                        <span
+                                            class="points-badge points-earned">+{{ $prediction->points_earned }}</span>
+                                        @else
+                                        <span class="points-badge points-zero">0</span>
+                                        @endif
+                                        @else
+                                        <span class="points-badge points-na">—</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                </div>
 
-/* Additional small screen optimizations */
-@media (max-width: 480px) {
-    .responsive-table td {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .responsive-table td:before {
-        margin-bottom: 0.5rem;
-        margin-right: 0;
-    }
-    
-    .nested-table td {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .nested-table td:before {
-        margin-bottom: 0.5rem;
-        margin-right: 0;
-    }
-}
-</style>
+                <!-- Modal Footer -->
+                <div class="modal-footer border-0 px-4 py-2 bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
     @endif
 </div>
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.user-toggle').forEach(function (link) {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const id = this.dataset.userId;
-                const nested = document.querySelector('.nested-row[data-user-id="' + id + '"]');
 
-                if (! nested) {
-                    window.location = this.href;
-                    return;
-                }
-
-                const open = nested.style.display === 'table-row';
-                document.querySelectorAll('.nested-row').forEach(function (row) {
-                    row.style.display = 'none';
-                });
-
-                if (! open) {
-                    nested.style.display = 'table-row';
-                }
-            });
-        });
-    });
-</script>
-@endpush
 @endsection

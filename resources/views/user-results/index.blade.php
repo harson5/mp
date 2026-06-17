@@ -14,7 +14,9 @@
     @if ($predictions->isEmpty())
         <p class="muted" style="margin-top:1rem;">You have not submitted any predictions yet. Go to the <a href="{{ route('matches.index') }}">Matches</a> tab to predict.</p>
     @else
-        <table class="table table-striped table-bordered" style="margin-top:1rem;">
+    <div class="table-responsive">
+
+        <table class="table app-table">
             <thead>
                 <tr>
                     <th>Match #</th>
@@ -47,9 +49,9 @@
                         <td data-label="Points">
                             @if ($match->hasResults())
                                 @if ($prediction->points_earned > 0)
-                                    <strong class="points-positive">+{{ $prediction->points_earned }}</strong>
+                                    <strong class="points-chip" >+{{ $prediction->points_earned }}</strong>
                                 @else
-                                    <span class="muted">0</span>
+                                    <span class="points-chip">0</span>
                                 @endif
                             @else
                                 <span class="muted">—</span>
@@ -59,6 +61,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
     @endif
 </div>
 @endsection

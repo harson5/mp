@@ -82,7 +82,7 @@
             Lock results (close predictions)
         </label>
 
-        <button type="submit">{{ $match->exists ? 'Update match' : 'Create match' }}</button>
+        <button  type="submit">{{ $match->exists ? 'Update match' : 'Create match' }}</button>
     </form>
 </div>
 
