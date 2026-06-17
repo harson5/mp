@@ -25,7 +25,7 @@ class AllUsersResultController extends Controller
             ->get()
             ->map(function (User $user) {
                 $user->predictions = $user->predictions
-                    ->sortBy(fn ($p) => $p->matchGame->match_datetime)
+                    ->sortByDesc(fn ($p) => $p->matchGame->match_datetime)
                     ->values();
 
                 return $user;

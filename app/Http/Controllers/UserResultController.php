@@ -13,7 +13,7 @@ class UserResultController extends Controller
             ->predictions()
             ->with('matchGame')
             ->get()
-            ->sortBy(fn ($prediction) => $prediction->matchGame->match_datetime)
+            ->sortByDesc(fn ($prediction) => $prediction->matchGame->match_datetime)
             ->values();
 
         return view('user-results.index', [
