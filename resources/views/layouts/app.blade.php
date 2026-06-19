@@ -8,9 +8,11 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;800&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -19,9 +21,9 @@
    CSS Custom Properties (Variables)
    ============================================ */
     :root {
-        --primary: #0d6efd;
-        --primary-dark: #0a58ca;
-        --primary-light: #6ea8fe;
+        --primary: #434343;
+        --primary-dark: #383838;
+        --primary-light: #dbdbdb;
         --danger: #dc2626;
         --success: #047857;
         --warning: #b45309;
@@ -91,7 +93,7 @@
     }
 
     a {
-        color: #2563eb;
+        color: #434343;
         text-decoration: none;
         transition: var(--transition);
     }
@@ -105,7 +107,8 @@
         color: var(--gray-500);
         font-size: 0.9rem;
     }
-    header{
+
+    header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -150,7 +153,7 @@
     input:focus,
     select:focus {
         outline: none;
-        border-color: #2563eb;
+        border-color: #434343;
         box-shadow: none;
     }
 
@@ -163,7 +166,7 @@
    ============================================ */
     button,
     .btn {
-        background: #2563eb;
+        background: #434343;
         color: #fff;
         border: none;
         padding: 0.6rem 1rem;
@@ -176,7 +179,7 @@
 
     button:hover,
     .btn:hover {
-        background: #1d4ed8;
+        background: #434344;
         text-decoration: none;
         color: #fff;
     }
@@ -225,7 +228,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 24px;
+        padding: 8px 18px;
         background-color: #f3f4f6;
         color: #4b5563;
         border: 1.5px solid #d1d5db;
@@ -251,6 +254,16 @@
 
     .btn-secondary.logout-btn:focus-visible {
         box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+    }
+
+    .btn:focus-visible {
+        background-color: #434343;
+        box-shadow: none;
+    }
+
+    .btn:active {
+        background-color: #434343 !important;
+        box-shadow: none;
     }
 
     .logout-icon {
@@ -368,15 +381,15 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 30%, #084298 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 30%, #4b4b4b 100%);
         color: #ffffff;
-        padding: 0.5rem 1.25rem;
+        padding: 6px 14px;
         border-radius: var(--radius-full);
         font-weight: 700;
         font-size: 15px;
         letter-spacing: 0.3px;
         border: 2px solid var(--primary-light);
-        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3),
+        box-shadow: 0 2px 15px rgba(13, 110, 253, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.2),
             0 0 0 3px rgba(13, 110, 253, 0.15);
         position: relative;
@@ -397,7 +410,7 @@
     }
 
     .score-badge.worldcup-badge:hover {
-        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4),
+        box-shadow: 0 6px 20px rgba(92, 92, 92, 0.4),
             inset 0 1px 0 rgba(255, 255, 255, 0.25),
             0 0 0 4px rgba(13, 110, 253, 0.2);
     }
@@ -541,6 +554,18 @@
     /* ============================================
    Components: Match Card
    ============================================ */
+    .bg-primary {
+        background: #434343 !important;
+    }
+
+    .text-primary {
+        color: #fff !important;
+    }
+
+    .card-header {
+        background: #434343;
+    }
+
     .match-card {
         border: 1px solid var(--gray-200);
         border-radius: 10px;
@@ -572,6 +597,10 @@
         gap: 0.5rem;
         min-width: 100px;
     }
+    .flag-wrapper{
+        width: 56px;
+        position: relative;
+    }
 
     .team-name,
     .team-label {
@@ -583,6 +612,13 @@
     .team-label {
         font-weight: 700;
         font-size: 0.85rem;
+        position: relative;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: table;
+        width: max-content;
+        white-space: nowrap;
     }
 
     .vs {
@@ -592,7 +628,7 @@
     }
 
     .vs-circle {
-        width: 40px;
+        min-width: 40px;
         height: 40px;
         border-radius: 50%;
         background: var(--primary);
@@ -620,7 +656,7 @@
     }
 
     .match-header-bar {
-        background: var(--primary);
+        background: #434343;
         padding: 12px 20px;
     }
 
@@ -755,7 +791,9 @@
     .match-header h1 {
         font-size: 2rem;
         font-weight: 700;
-        background: linear-gradient(135deg, var(--primary), #084298);
+        font-family: 'Oswald', sans-serif;
+          font-family: "Cherry Cream Soda", system-ui;
+        background: var(--primary);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -945,608 +983,874 @@
             padding: 0.25rem 0;
         }
     }
-/* ============================================
+
+    /* ============================================
        Main Table with Borders
        ============================================ */
-.table-responsive {
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.app-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid #d1d5db;
-    table-layout: fixed;
-    margin: 0;
-}
-
-.app-table th,
-.app-table td {
-    border: 1px solid #d1d5db;
-    padding: 0.75rem 1.25rem;
-}
-
-.app-table thead th {
-    background: #f8fafc;
-    color: #64748b;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    border-bottom: 2px solid #cbd5e1;
-    white-space: nowrap;
-}
-
-.app-table thead th:first-child {
-    border-top-left-radius: 16px;
-}
-
-.app-table thead th:last-child {
-    border-top-right-radius: 16px;
-}
-
-.app-table tbody td {
-    font-size: 0.9rem;
-    color: #334155;
-    vertical-align: middle;
-    transition: background 0.15s ease;
-    border-bottom: 1px solid #d1d5db;
-}
-
-.app-table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 16px;
-}
-
-.app-table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 16px;
-}
-
-.app-table tbody tr:hover td {
-    background: #fafcfd;
-}
-
-.user-td {}
-
-/* ============================================
-       Modal Table with Borders
-       ============================================ */
-.modal-body .table-responsive {
-    overflow: scroll;
-}
-
-.modal-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #d1d5db;
-    font-size: 0.9rem;
-    margin: 0;
-}
-
-.modal-table th,
-.modal-table td {
-    border: 1px solid #d1d5db;
-    padding: 0.65rem 1rem;
-}
-
-.modal-table thead th {
-    background: #f8fafc;
-    color: #64748b;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    border-bottom: 2px solid #cbd5e1;
-    white-space: nowrap;
-}
-
-.modal-table thead th:first-child {
-    border-top-left-radius: 12px;
-}
-
-.modal-table thead th:last-child {
-    border-top-right-radius: 12px;
-}
-
-.modal-table tbody td {
-    font-size: 0.85rem;
-    color: #334155;
-    vertical-align: middle;
-    border-bottom: 1px solid #d1d5db;
-}
-
-.modal-table tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-}
-
-.modal-table tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
-}
-
-.modal-table tbody tr:hover td {
-    background: #fafcfd;
-}
-
-/* ============================================
-       Other Styles
-       ============================================ */
-.rank-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rank-medal {
-    font-size: 1.5rem;
-}
-
-.rank-number {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #f1f5f9;
-    color: #585858;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.85rem;
-}
-
-.user-cell {
-    min-width: 0;
-    width: 100%;
-}
-
-.user-cell .d-flex {
-    min-width: 0;
-    width: 100%;
-}
-
-.modal-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
-.admin-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    color: #92400e;
-    padding: 0.15rem 0.55rem;
-    border-radius: 50px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    border: 1px solid #fcd34d;
-    white-space: nowrap;
-}
-
-.points-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-    color: #047857;
-    padding: 0.3rem 0.85rem;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    border: 1px solid #a7f3d0;
-    white-space: nowrap;
-}
-
-.predictions-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #eff6ff;
-    color: #0d6efd;
-    font-weight: 700;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
-.view-btn {
-    transition: all 0.2s ease;
-    background-color: #fff;
-    color: #0d6efd;
-    border: 1px solid #0d6efd !important;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.view-btn:hover {
-    background: #0d6efd;
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
-}
-
-.bg-gradient-primary {
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-}
-
-/* Match Badge */
-.match-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f5f9;
-    color: #475569;
-    padding: 0.2rem 0.65rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.8rem;
-    min-width: 40px;
-}
-
-.date-text {
-    color: #64748b;
-    font-size: 0.8rem;
-    white-space: nowrap;
-}
-
-.teams-container {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-}
-
-.team-name {
-    font-weight: 500;
-    color: #1e293b;
-}
-
-.vs-text {
-    color: #94a3b8;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.prediction-container {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-}
-
-.prediction-winner {
-    font-weight: 600;
-    color: #0d6efd;
-}
-
-.prediction-score {
-    color: #64748b;
-    font-size: 0.8rem;
-}
-
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-.status-completed {
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-}
-
-.status-pending {
-    background: #fffbeb;
-    color: #b45309;
-    border: 1px solid #fcd34d;
-}
-
-.points-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2rem 0.6rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    min-width: 32px;
-}
-
-.points-earned {
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-}
-
-.points-zero {
-    background: #f1f5f9;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
-}
-
-.points-na {
-    background: transparent;
-    color: #94a3b8;
-}
-
-/* ============================================
-       Mobile Responsive
-       ============================================ */
-@media (max-width: 1024px) {
-    colgroup col:nth-child(3), colgroup col:nth-child(4){
-        width: 130px !important;
-    }
-}
-@media (max-width: 768px) {
     .table-responsive {
-        border: none;
-        padding: 0;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        overflow: auto;
     }
 
     .app-table {
-        table-layout: auto;
-        border: none;
-        display: block;
-        overflow: unset;
-    }
-
-
-    .app-table thead {
-        display: none;
-    }
-
-    /* Make tbody a grid container with 2 columns */
-    .app-table tbody {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
         width: 100%;
-    }
-
-    .app-table tbody tr {
-        display: block;
-        border: 1px solid #d1d5db;
-        border-radius: 12px;
-        background: #fff !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 16px;
         overflow: hidden;
-        width: 100%;
+        border: 1px solid #d1d5db;
+        table-layout: fixed;
         margin: 0;
-        /* Remove margin, use grid gap instead */
+    }
+
+    .app-table th,
+    .app-table td {
+        border: 1px solid #d1d5db;
+        padding: 10px 14px;
+    }
+
+    .app-table thead th {
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border-bottom: 2px solid #cbd5e1;
+        white-space: nowrap;
+    }
+
+    .app-table thead th:first-child {
+        border-top-left-radius: 16px;
+    }
+
+    .app-table thead th:last-child {
+        border-top-right-radius: 16px;
     }
 
     .app-table tbody td {
-        display: flex;
-        justify-content: space-between;
-        --bs-table-bg-type: #fff !important;
-        align-items: center;
-        padding: 0.7rem 1rem;
-        border: none;
-        border-bottom: 1px solid #e5e7eb;
-        text-align: right;
-        gap: 1rem;
-        width: 100% !important;
+        font-size: 0.9rem;
+        color: #334155;
+        vertical-align: middle;
+        transition: background 0.15s ease;
+        border-bottom: 1px solid #d1d5db;
     }
 
-    .app-table tbody td:last-child {
-        border-bottom: none;
+    .app-table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 16px;
     }
 
-    .app-table tbody td::before {
-        content: attr(data-label);
-        font-weight: 700;
-        color: #64748b;
-        text-transform: uppercase;
-        font-size: 0.6rem;
-        letter-spacing: 0.6px;
-        text-align: left;
-        flex-shrink: 0;
-        min-width: 60px;
+    .app-table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 16px;
     }
 
     .app-table tbody tr:hover td {
-        background: #fff;
+        background: #fafcfd;
     }
 
-    /* Make sure rank cell works in grid */
-    .rank-cell {
-        justify-content: flex-start;
-    }
+    .user-td {}
 
-    .rank-medal {
-        font-size: 1.3rem;
-    }
+    /* ============================================
+       Modal Table with Borders
+       ============================================ */
 
-    .rank-number {
-        width: 30px;
-        height: 30px;
-        font-size: 0.75rem;
-    }
-
-    /* User cell adjustments for grid */
-    .user-cell {
-        justify-content: end;
-        gap: 0.5rem;
-    }
-
-    .user-cell .d-flex {
-        flex-wrap: wrap;
-        gap: 0.25rem;
-        width: fit-content;
-    }
-
-    .view-btn {
-        padding: 0.2rem 0.6rem;
-        font-size: 0.75rem;
-    }
-
-
-    .points-chip {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.6rem;
-    }
-
-    .predictions-count {
-        width: 30px;
-        height: 30px;
-        font-size: 0.75rem;
-    }
-
-    /* Modal Table Mobile */
     .modal-table {
-        border-radius: 12px;
-        border: none;
-    }
-
-    .modal-table thead {
-        display: none;
-    }
-
-    .modal-table tbody {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 10px;
         width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #d1d5db;
+        font-size: 0.9rem;
+        margin: 0;
     }
 
-    .modal-table tbody tr {
-        display: block;
+    .modal-table th,
+    .modal-table td {
         border: 1px solid #d1d5db;
-        border-radius: 12px;
-        margin: 0;
-        background: #fff;
-        overflow: hidden;
+        padding: 0.65rem 1rem;
+    }
+
+    .modal-table thead th {
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        border-bottom: 2px solid #cbd5e1;
+        white-space: nowrap;
+    }
+
+    .modal-table thead th:first-child {
+        border-top-left-radius: 12px;
+    }
+
+    .modal-table thead th:last-child {
+        border-top-right-radius: 12px;
     }
 
     .modal-table tbody td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 0.85rem;
-        border: none;
-        border-bottom: 1px solid #e5e7eb;
-        text-align: right;
-        gap: 0.75rem;
-        width: 100% !important;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+        color: #334155;
+        vertical-align: middle;
+        border-bottom: 1px solid #d1d5db;
     }
 
-    .modal-table tbody td:last-child {
-        border-bottom: none;
+    .modal-table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 12px;
     }
 
-    .modal-table tbody td::before {
-        content: attr(data-label);
-        font-weight: 700;
-        color: #64748b;
-        text-transform: uppercase;
-        font-size: 10px;
-        letter-spacing: 0.5px;
-        text-align: left;
-        flex-shrink: 0;
-        min-width: 50px;
+    .modal-table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 12px;
     }
 
     .modal-table tbody tr:hover td {
-        background: #fff;
+        background: #fafcfd;
     }
 
-    .teams-container {
-        justify-content: flex-end;
-        gap: 0.25rem;
+    /* ============================================
+       Other Styles
+       ============================================ */
+    .rank-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .team-name {
-        font-size: 0.75rem;
+    .rank-medal {
+        font-size: 1.5rem;
     }
 
-    .prediction-container {
-        justify-content: flex-end;
-        gap: 0.2rem;
+    .rank-number {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #f1f5f9;
+        color: #585858;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
     }
 
-    .prediction-winner {
-        font-size: 0.75rem;
+    .user-cell {
+        min-width: 0;
+        width: 100%;
     }
 
-    .prediction-score {
-        font-size: 0.7rem;
+    .user-cell .d-flex {
+        min-width: 0;
+        width: 100%;
     }
 
+    .modal-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .admin-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        color: #92400e;
+        padding: 0.15rem 0.55rem;
+        border-radius: 50px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        border: 1px solid #fcd34d;
+        white-space: nowrap;
+    }
+
+    .points-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        color: #047857;
+        padding: 0.3rem 0.85rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: 1px solid #a7f3d0;
+        white-space: nowrap;
+    }
+
+    .predictions-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #eff6ff;
+        color: #434343;
+        font-weight: 700;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .view-btn {
+        transition: all 0.2s ease;
+        background-color: #fff;
+        color: #434343;
+        border: 1px solid #434343 !important;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .view-btn:hover {
+        background: #434343;
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #434343 0%, #0a58ca 100%);
+    }
+
+    /* Match Badge */
     .match-badge {
-        font-size: 14px;
-        padding: 0.15rem 0.5rem;
-        min-width: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #f1f5f9;
+        color: #475569;
+        padding: 0.2rem 0.65rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        min-width: 40px;
     }
 
     .date-text {
-        font-size: 14px;
+        color: #64748b;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .teams-container {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+    }
+
+    .team-name {
+        font-weight: 500;
+        color: #1e293b;
+    }
+
+    .vs-text {
+        color: #94a3b8;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .prediction-container {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        flex-wrap: wrap;
+    }
+
+    .prediction-winner {
+        font-weight: 600;
+        color: #434343;
+    }
+
+    .prediction-score {
+        color: #64748b;
+        font-size: 0.8rem;
     }
 
     .status-badge {
-        font-size: 14px;
-        padding: 0.15rem 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .status-completed {
+        background: #ecfdf5;
+        color: #047857;
+        border: 1px solid #a7f3d0;
+    }
+
+    .status-pending {
+        background: #fffbeb;
+        color: #b45309;
+        border: 1px solid #fcd34d;
     }
 
     .points-badge {
-        font-size: 14px;
-        padding: 0.15rem 0.4rem;
-        min-width: 28px;
-    }
-}
-
-/* Optional: For very small screens, switch to 1 column */
-@media (max-width: 576px) {
-    .btn{
-        font-size: 14px;
-    }
-    .app-table tbody {
-        grid-template-columns: 1fr;
-        /* Single column on very small screens */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2rem 0.6rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        min-width: 32px;
     }
 
-    .modal-table tbody {
-        grid-template-columns: 1fr;
+    .points-earned {
+        background: #ecfdf5;
+        color: #047857;
+        border: 1px solid #a7f3d0;
     }
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+
+    .points-zero {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+    }
+
+    .points-na {
+        background: transparent;
+        color: #94a3b8;
+    }
+
+    /* User ID */
+    .user-id {
+        color: #94a3b8;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    /* Small Avatar */
+    .user-avatar-sm {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #434343, #0a58ca);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    /* Transaction Code */
+    .transaction-code {
+        max-width: 110px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        font-family: 'SF Mono', 'Cascadia Code', monospace;
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+
+    /* ============================================
+       Filter Buttons
+       ============================================ */
+    .btn-filter {
+        padding: 0.4rem 1rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border-radius: 50px;
+        background: #f8f9fa;
+        color: #495057;
+        border: 1.5px solid #e9ecef;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .btn-filter:hover,
+    .btn-filter.active {
+        background: #434343;
+        border-color: #434343;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn-filter.active {
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Add Button */
+    .btn-add {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border-radius: 50px;
+        background: #434343;
+        color: #fff;
+        border: none;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    }
+
+    .btn-add:hover {
+        background: #292929;
+        color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(13, 110, 253, 0.4);
+        text-decoration: none;
+    }
+
+    /* ============================================
+       Payment Badges
+       ============================================ */
+    .badge-payment {
+        padding: 4px 8px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.72rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+    }
+
+    .badge-verified {
+        background: #d4edda;
+        color: #155724;
+        border: 1.5px solid #c3e6cb;
+    }
+
+    .badge-paid {
+        background: #fff3cd;
+        color: #856404;
+        border: 1.5px solid #ffeeba;
+    }
+
+    .badge-unpaid {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1.5px solid #f5c6cb;
+    }
+
+    /* ============================================
+       Action Buttons
+       ============================================ */
+    .btn-verify {
+        background: #d4edda;
+        color: #155724;
+        border: 1.5px solid #c3e6cb;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-verify:hover {
+        background: #155724;
+        color: #fff;
+        border-color: #155724;
+    }
+    .btn-verify:active {
+        background: #155724;
+        color: #fff;
+        border-color: #155724;
+    }
+
+    .btn-mark-paid {
+        background: #fff3cd;
+        color: #856404;
+        border: 1.5px solid #ffeeba;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-mark-paid:hover {
+        background: #856404;
+        color: #fff;
+        border-color: #856404;
+    }
+    .btn-mark-paid:active {
+        background: #856404;
+        color: #fff;
+        border-color: #856404;
+    }
+
+    .btn-view {
+        background: #cce5ff;
+        color: #434343;
+        border: 1.5px solid #b8daff;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-view:hover {
+        background: #434343;
+        color: #fff;
+        border-color: #434343;
+    }
+    .btn-view:active {
+        background: #434343;
+        color: #fff;
+        border-color: #434343;
+    }
+
+    .btn-edit {
+        background: #e7f5ff;
+        color: #434343;
+        border: 1.5px solid #b6d4fe;
+        border-radius: 50px;
+
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 9px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-edit:hover {
+        background: #434343;
+        color: #fff;
+        border-color: #434343;
+    }
+
+    .btn-delete {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1.5px solid #f5c6cb;
+        border-radius: 50px;
+
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 9px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-delete:hover {
+        background: #721c24;
+        color: #fff;
+        border-color: #721c24;
+    }
+
+    /* ============================================
+       Mobile Responsive (Card Layout)
+       ============================================ */
+    @media (max-width: 768px) {
+
+        .btn-verify,
+        .btn-mark-paid,
+        .btn-view,
+        .btn-edit,
+        .btn-delete {
+            padding: 0.3rem 0.55rem;
+            min-width: 32px;
         }
-    
-    .score-wrapper {
-        justify-content: space-between;
-        width: 100%;
-    }
-}
 
+        .btn-verify i,
+        .btn-mark-paid i,
+        .btn-view i,
+        .btn-edit i,
+        .btn-delete i {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .btn-filter {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.7rem;
+        }
+
+        .btn-add {
+            padding: 0.3rem 0.9rem;
+            font-size: 0.7rem;
+        }
+    }
+
+    /* ============================================
+       Mobile Responsive
+       ============================================ */
+    @media (max-width: 1024px) {
+
+        colgroup col:nth-child(3),
+        colgroup col:nth-child(4) {
+            width: 130px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .table-responsive {
+            border: none;
+            padding: 0;
+        }
+
+        .app-table {
+            table-layout: auto;
+            border: none;
+            display: block;
+            overflow: unset;
+        }
+
+
+        .app-table thead {
+            display: none;
+        }
+
+        /* Make tbody a grid container with 2 columns */
+        .app-table tbody {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .app-table tbody tr {
+            display: block;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            background: #fff !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            width: 100%;
+            margin: 0;
+            /* Remove margin, use grid gap instead */
+        }
+
+        .app-table tbody td {
+            display: flex;
+            justify-content: space-between;
+            --bs-table-bg-type: #fff !important;
+            align-items: center;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: right;
+            gap: 1rem;
+            width: 100% !important;
+        }
+
+        .app-table tbody td:last-child {
+            border-bottom: none;
+        }
+
+        .app-table tbody td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.6px;
+            text-align: left;
+            flex-shrink: 0;
+            min-width: 60px;
+        }
+
+        .app-table tbody tr:hover td {
+            background: #fff;
+        }
+
+        /* Make sure rank cell works in grid */
+        .rank-cell {
+            justify-content: flex-start;
+        }
+
+        .rank-medal {
+            font-size: 1.3rem;
+        }
+
+        .rank-number {
+            width: 30px;
+            height: 30px;
+            font-size: 0.75rem;
+        }
+
+        /* User cell adjustments for grid */
+        .user-cell {
+            justify-content: end;
+            gap: 0.5rem;
+        }
+
+        .user-cell .d-flex {
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            width: fit-content;
+        }
+
+        .view-btn {
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+        }
+
+
+        .points-chip {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .predictions-count {
+            width: 30px;
+            height: 30px;
+            font-size: 0.75rem;
+        }
+
+        /* Modal Table Mobile */
+        .modal-table {
+            border-radius: 12px;
+            border: none;
+        }
+
+        .modal-table thead {
+            display: none;
+        }
+
+        .modal-table tbody {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .modal-table tbody tr {
+            display: block;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            margin: 0;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .modal-table tbody td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0.85rem;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: right;
+            gap: 0.75rem;
+            width: 100% !important;
+            font-size: 0.75rem;
+        }
+
+        .modal-table tbody td:last-child {
+            border-bottom: none;
+        }
+
+        .modal-table tbody td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-align: left;
+            flex-shrink: 0;
+            min-width: 50px;
+        }
+
+        .modal-table tbody tr:hover td {
+            background: #fff;
+        }
+
+        .teams-container {
+            justify-content: flex-end;
+            gap: 0.25rem;
+        }
+
+        .team-name {
+            font-size: 0.75rem;
+        }
+
+        .prediction-container {
+            justify-content: flex-end;
+            gap: 0.2rem;
+        }
+
+        .prediction-winner {
+            font-size: 0.75rem;
+        }
+
+        .prediction-score {
+            font-size: 0.7rem;
+        }
+
+        .match-badge {
+            font-size: 14px;
+            padding: 0.15rem 0.5rem;
+            min-width: 30px;
+        }
+
+        .date-text {
+            font-size: 14px;
+        }
+
+        .status-badge {
+            font-size: 14px;
+            padding: 0.15rem 0.5rem;
+        }
+
+        .points-badge {
+            font-size: 14px;
+            padding: 0.15rem 0.4rem;
+            min-width: 28px;
+        }
+    }
+
+    /* Optional: For very small screens, switch to 1 column */
+    @media (max-width: 576px) {
+        .btn {
+            font-size: 14px;
+        }
+
+        .app-table tbody {
+            grid-template-columns: 1fr;
+            /* Single column on very small screens */
+        }
+
+        .modal-table tbody {
+            grid-template-columns: 1fr;
+        }
+
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .score-wrapper {
+            justify-content: space-between;
+            width: 100%;
+        }
+        .team-label{
+            white-space: normal;
+            width: unset;
+        }
+    }
     </style>
     <div class="wrap">
         @hasSection('header')

@@ -25,7 +25,7 @@
         <div class="col-md-6">
 
 <div class="card shadow-sm h-100 border-0 rounded-3 overflow-hidden p-0">
-    <div class="card-header bg-gradient bg-primary text-white border-0 py-2 px-3">
+    <div class="card-header text-white border-0 py-2 px-3">
         <div class="d-flex align-items-center">
             <div class="bg-white bg-opacity-25 rounded-3 p-2 py-1 me-3">
                 <i class="bi bi-list-check fs-5"></i>
@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-6">
             <div class="card shadow-sm h-100 border-0 rounded-3 overflow-hidden p-0">
-                <div class="card-header bg-gradient bg-primary text-white border-0 py-2 px-3">
+                <div class="card-header text-white border-0 py-2 px-3">
                     
                      <div class="d-flex align-items-center">
                         <div class="bg-white bg-opacity-25 rounded-3 p-2 py-1 me-3">
@@ -244,8 +244,8 @@
                 </div>
                 
                 <!-- Teams -->
-                <div class="d-flex align-items-center justify-content-center gap-4 gap-sm-5">
-                    <div class="text-center">
+                <div class="d-flex justify-content-between gap-4 gap-sm-5 mx-auto" style="max-width: 380px">
+                    <div class="text-center flag-wrapper">
                         @if ($url = $match->flagUrl($match->opponent1_flag))
                             <img src="{{ $url }}" class="flag-circle mx-auto d-block mb-2">
                         @else
@@ -256,9 +256,9 @@
                         <span class="team-label">{{ $match->opponent1 }}</span>
                     </div>
                     
-                    <div class="vs-circle mx-sm-5">VS</div>
+                    <div class="vs-circle my-auto">VS</div>
                     
-                    <div class="text-center">
+                    <div class="text-center flag-wrapper">
                         @if ($url = $match->flagUrl($match->opponent2_flag))
                             <img src="{{ $url }}" class="flag-circle mx-auto d-block mb-2">
                         @else

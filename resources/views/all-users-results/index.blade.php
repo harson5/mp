@@ -118,7 +118,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content border-0 rounded-4 shadow-lg">
                 <!-- Modal Header -->
-                <div class="modal-header bg-gradient-primary text-white rounded-top-4 border-0 px-4 py-2">
+                <div class="modal-header bg-primary text-white rounded-top-4 border-0 px-4 py-2">
                     <div class="d-flex align-items-center gap-3">
                         <div class="modal-avatar">
                             {{ strtoupper(substr($user->name, 0, 2)) }}

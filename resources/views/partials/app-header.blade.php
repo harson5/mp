@@ -1,18 +1,31 @@
 
 
 <header>
-    <div class="match-header">
-        <h1>Match Predictor</h1>
-        <p class="muted">
-            @php
-            $user = auth()->user();
-            @endphp
-            Hello, @if (!($user->isAdmin())) {{ $user->name }} @endif
-            @if ($user->isAdmin())
-            <span class="admin-badge">👑 Admin</span>
-            @endif
-        </p>
+    <style>
+        .fifa-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+    </style>
+   <div class="match-header">
+    <div class="d-flex align-items-center gap-2">
+        <img src="{{ asset('fifa-logo.png') }}" alt="FIFA Logo" class="fifa-logo">
+        <div>
+            <h1>Match Predictor</h1>
+            <p class="muted">
+                @php
+                $user = auth()->user();
+                @endphp
+                Hello, @if (!($user->isAdmin())) {{ $user->name }} @endif
+                @if ($user->isAdmin())
+                <span class="admin-badge">👑 Admin</span>
+                @endif
+            </p>
+        </div>
     </div>
+</div>
     <div class="score-wrapper">
         @if (!$user->isAdmin())
         <span class="score-badge worldcup-badge">
