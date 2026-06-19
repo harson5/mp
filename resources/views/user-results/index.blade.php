@@ -51,7 +51,7 @@
                                 @if ($prediction->points_earned > 0)
                                     <strong class="points-chip" >+{{ $prediction->points_earned }}</strong>
                                 @else
-                                    <span class="points-chip">0</span>
+                                    <span class="points-chip null-count">0</span>
                                 @endif
                             @else
                                 <span class="muted">—</span>

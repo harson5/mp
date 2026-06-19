@@ -9,10 +9,14 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
- <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;800&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;800&family=Montserrat:wght@600;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -326,6 +330,76 @@
         background: var(--gray-50);
     }
 
+    /* Loading Animation */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease 0.6s, visibility 0.5s ease 0.6s;
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .loading-overlay.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .loading-dots {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+        color: #434343;
+        font-weight: 500;
+        margin-top: 16px;
+        transition: opacity 0.4s ease;
+    }
+
+    .loading-dots.fade-out {
+        opacity: 0;
+    }
+
+    .loading-dots span {
+        animation: dotBlink2 1.5s infinite;
+        opacity: 0;
+    }
+
+    .loading-dots span:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .loading-dots span:nth-child(2) {
+        animation-delay: 0.25s;
+    }
+
+    .loading-dots span:nth-child(3) {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes dotBlink2 {
+
+        0%,
+        20% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+
     /* ============================================
    Components: Badges
    ============================================ */
@@ -597,7 +671,8 @@
         gap: 0.5rem;
         min-width: 100px;
     }
-    .flag-wrapper{
+
+    .flag-wrapper {
         width: 56px;
         position: relative;
     }
@@ -792,7 +867,7 @@
         font-size: 2rem;
         font-weight: 700;
         font-family: 'Oswald', sans-serif;
-          font-family: "Cherry Cream Soda", system-ui;
+        font-family: "Cherry Cream Soda", system-ui;
         background: var(--primary);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -1192,6 +1267,12 @@
         white-space: nowrap;
     }
 
+    .points-chip.null-count {
+        background: linear-gradient(135deg, #fdecec, #fad1d1);
+        color: #783204;
+        border: 1px solid #f3a7a7;
+    }
+
     .predictions-count {
         display: inline-flex;
         align-items: center;
@@ -1470,6 +1551,7 @@
         color: #fff;
         border-color: #155724;
     }
+
     .btn-verify:active {
         background: #155724;
         color: #fff;
@@ -1492,6 +1574,7 @@
         color: #fff;
         border-color: #856404;
     }
+
     .btn-mark-paid:active {
         background: #856404;
         color: #fff;
@@ -1514,6 +1597,7 @@
         color: #fff;
         border-color: #434343;
     }
+
     .btn-view:active {
         background: #434343;
         color: #fff;
@@ -1821,6 +1905,266 @@
         }
     }
 
+    /* login page */
+    /* ========== LOADING SCREEN ========== */
+    #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease 0.6s, visibility 0.5s ease 0.6s;
+    }
+
+    #loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .loader-logo-wrap {
+        transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .loader-logo-wrap.fly-up {
+        /* transform: translateY(-30.8vh) scale(0.6875); */
+    }
+
+    .loader-logo-img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+
+    .loader-dots {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+        color: #434343;
+        font-weight: 500;
+        margin-top: 16px;
+        transition: opacity 0.4s ease;
+    }
+
+    .loader-dots.fade-out {
+        opacity: 0;
+    }
+
+    .loader-dots span {
+        animation: dotBlink 1.5s infinite;
+        opacity: 0;
+    }
+
+    .loader-dots span:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .loader-dots span:nth-child(2) {
+        animation-delay: 0.25s;
+    }
+
+    .loader-dots span:nth-child(3) {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes dotBlink {
+
+        0%,
+        20% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* ========== PAGE CONTENT ========== */
+    .page-content {
+        opacity: 0;
+        transition: opacity 0.5s ease 0.4s;
+    }
+
+    .page-content.visible {
+        opacity: 1;
+    }
+
+    /* ========== SLIDE DOWN FROM ABOVE ========== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+        transition-delay: 0s;
+    }
+
+    .reveal-delay-2 {
+        transition-delay: 0.08s;
+    }
+
+    .reveal-delay-3 {
+        transition-delay: 0.16s;
+    }
+
+    .reveal-delay-4 {
+        transition-delay: 0.24s;
+    }
+
+    .reveal-delay-5 {
+        transition-delay: 0.32s;
+    }
+
+    /* ========== INPUT STYLING ========== */
+    .input-modern {
+        padding: 0.65rem 1rem !important;
+        border: 1.5px solid #e8e8e8 !important;
+        font-size: 0.9rem !important;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+    }
+
+    .input-modern:focus {
+        border-color: #434343 !important;
+        box-shadow: 0 0 0 3px rgba(67, 67, 67, 0.06) !important;
+        outline: none !important;
+    }
+
+    /* ========== PASSWORD TOGGLE ========== */
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper .input-modern {
+        padding-right: 2.5rem !important;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #999;
+        cursor: pointer;
+        padding: 5px;
+        line-height: 1;
+        transition: color 0.2s ease;
+        z-index: 5;
+    }
+
+    .password-toggle:hover,
+    .password-toggle:focus {
+        color: #434343;
+        outline: none;
+        background: none;
+    }
+
+    /* ========== LOGIN CARD ========== */
+    .login-card {
+        overflow: hidden;
+    }
+
+    .login-logo {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+    }
+
+    .login-heading {
+        font-family: 'Cherry Cream Soda', sans-serif;
+        font-size: 1.7rem;
+        letter-spacing: 1px;
+        color: #434343;
+    }
+
+    .login-subtitle {
+        font-size: 0.8rem;
+    }
+
+    /* ========== BUTTON ========== */
+    .btn-login {
+        background: #434343;
+        letter-spacing: 1px;
+        font-size: 0.95rem;
+        transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-login:hover {
+        background: #2d2d2d;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(67, 67, 67, 0.25);
+    }
+
+    .btn-login:active {
+        transform: translateY(0);
+    }
+
+    /* ========== REMEMBER CHECKBOX ========== */
+    .remember-checkbox {
+        width: 1rem;
+        height: 1rem;
+        margin: 0;
+        border: 1.5px solid #d0d0d0;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .remember-checkbox:hover {
+        border-color: #434343;
+    }
+
+    .remember-checkbox:focus {
+        border-color: #434343;
+        box-shadow: 0 0 0 3px rgba(67, 67, 67, 0.15);
+        outline: none;
+    }
+
+    .remember-checkbox:checked {
+        background-color: #434343;
+        border-color: #434343;
+    }
+
+    .remember-checkbox:checked:hover {
+        background-color: #2d2d2d;
+        border-color: #2d2d2d;
+    }
+
+    .remember-checkbox:checked:focus {
+        border-color: #434343;
+        box-shadow: 0 0 0 3px rgba(67, 67, 67, 0.15);
+    }
+
+    .remember-label {
+        cursor: pointer;
+    }
+
+    .forgot-link {
+        color: #434343;
+    }
+
+    .register-link {
+        color: #434343;
+    }
+
+    /* login page */
+
     /* Optional: For very small screens, switch to 1 column */
     @media (max-width: 576px) {
         .btn {
@@ -1846,12 +2190,25 @@
             justify-content: space-between;
             width: 100%;
         }
-        .team-label{
+
+        .team-label {
             white-space: normal;
             width: unset;
         }
     }
     </style>
+    @unless(request()->is('login') || request()->is('forgot-password') || request()->is('register') ||
+    request()->is('reset-password*'))
+    <div class="loading-overlay" id="loadingOverlay">
+        <div style="text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <div class="loading-dots" id="loading-dots">
+                    LOADING<span>.</span><span>.</span><span>.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endunless
     <div class="wrap">
         @hasSection('header')
         @yield('header')
@@ -1878,6 +2235,50 @@
         @yield('content')
     </div>
     @stack('scripts')
+    <script>
+    // Hide loading animation after page loads
+    window.addEventListener('load', function() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.classList.add('hidden');
+            // Remove from DOM after transition
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    overlay.parentNode.removeChild(overlay);
+                }
+            }, 300);
+        }
+    });
+
+    // Fallback: hide after 5 seconds if load event fails
+    setTimeout(function() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay && !overlay.classList.contains('hidden')) {
+            overlay.classList.add('hidden');
+            setTimeout(() => {
+                if (overlay && overlay.parentNode) {
+                    overlay.parentNode.removeChild(overlay);
+                }
+            }, 300);
+        }
+    }, 5000);
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+            btn.setAttribute('title', 'Hide password');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+            btn.setAttribute('title', 'Show password');
+        }
+    }
+    </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
