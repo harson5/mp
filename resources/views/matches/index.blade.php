@@ -17,6 +17,7 @@
     <li>The collected money will be divided into prizes for the top 3 users at the end of the tournament.</li>
     <li>The scoring system is designed to reward accurate predictions, with points awarded based on how closely your prediction matches the actual match results.</li>
     <li>Please refer to the scoring rules on the right for more details.</li>
+    <li>This stage of the game runs through the completion of all 72 group matches. Following the conclusion of Match 72, prizes will be distributed to the winners, and the prediction pool will reset to mark the beginning of the second round</li>
     <strong>Disclaimers:</strong>
     <li class="text-danger"><i>This Website does not endorse or promote any form of gambling.</i></li>
   </ul>

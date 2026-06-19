@@ -69,7 +69,7 @@
     @if ($user->isAdmin())
     <a href="{{ route('admin.matches.index') }}" 
        class="nav-link rounded-pill px-4 py-2 fw-medium {{ request()->routeIs('admin.matches.*') ? 'active bg-primary text-white shadow-sm' : 'bg-secondary bg-opacity-10 text-dark' }}">
-        <i class="bi bi-gear me-1"></i> Manage
+        <i class="bi bi-gear me-1"></i> Manage Matchs
     </a>
     <a href="{{ route('admin.users.index') }}" 
        class="nav-link rounded-pill px-4 py-2 fw-medium {{ request()->routeIs('admin.users.*') ? 'active bg-primary text-white shadow-sm' : 'bg-secondary bg-opacity-10 text-dark' }}">

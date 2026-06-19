@@ -26,7 +26,7 @@ class MatchController extends Controller
             ->whereIn('match_game_id', $matches->pluck('id'))
             ->get()
             ->keyBy('match_game_id');
-        $topUsers = User::orderByDesc('score')->take(5)->get(['name', 'score']);
+        $topUsers = User::orderByDesc('score')->orderBy('name', 'asc')->take(5)->get(['name', 'score']);
 
         return view('matches.index', [
             'matches' => $matches,
