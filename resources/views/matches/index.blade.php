@@ -220,10 +220,36 @@
             <div class="match-item {{ $isClosed && !auth()->user()->isAdmin() ? 'closed' : '' }}">
                 <!-- Match Header -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <span class="badge bg-light text-dark rounded-pill me-2">Match #{{ $match->match_no }}</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-light text-dark rounded-pill">Match #{{ $match->match_no }}</span>
                         <span class="text-muted small">
                             <i class="bi bi-clock me-1"></i>{{ $match->match_datetime->format('H:i') }}
+                        </span>
+                        @php
+                            $matchDate = $match->match_datetime->startOfDay();
+                            $today = now()->startOfDay();
+                            $tomorrow = now()->addDay()->startOfDay();
+                            $yesterday = now()->subDay()->startOfDay();
+                            
+                            if ($matchDate->equalTo($today)) {
+                                $dayBadge = 'bg-success';
+                                $dayText = 'Today';
+                            } elseif ($matchDate->equalTo($tomorrow)) {
+                                $dayBadge = 'bg-warning text-dark';
+                                $dayText = 'Tomorrow';
+                            } elseif ($matchDate->equalTo($yesterday)) {
+                                $dayBadge = 'bg-danger';
+                                $dayText = 'Yesterday';
+                            } elseif ($matchDate->between(now()->subDays(7), now()->addDays(7))) {
+                                $dayBadge = 'bg-info text-dark';
+                                $dayText = $match->match_datetime->format('D, M j');
+                            } else {
+                                $dayBadge = 'bg-secondary';
+                                $dayText = $match->match_datetime->format('M j, Y');
+                            }
+                        @endphp
+                        <span class="badge {{ $dayBadge }} rounded-pill px-2" style="font-size: 0.7rem;">
+                            {{ $dayText }}
                         </span>
                     </div>
                     <div>
